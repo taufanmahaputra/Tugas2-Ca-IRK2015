@@ -37,11 +37,13 @@ BigInt::BigInt(string svalue) {
 BigInt::BigInt(const BigInt& bigNum): value(bigNum.value) {
 }
 
+
 /* Operators */
 BigInt& BigInt::operator=(const BigInt& bigNum) {
 	value = bigNum.value;
 	return *this;
 }
+
 
 /*Arithmatic Operators*/
 BigInt BigInt::operator+(const BigInt& bigNum) {
@@ -58,9 +60,10 @@ BigInt BigInt::operator+(const BigInt& bigNum) {
 			rem = temp.value[i]/base;
 			temp.value[i] %= base;
 		}
-		if(rem)
-			temp.value.phb(rem);
-		return temp;
+	if(rem)
+		temp.value.phb(rem);
+	set(temp);
+	return temp;
 }
 // BigInt& BigInt::operator-(const BigInt& bigNum) {
 // 	return *bigNum;
@@ -69,15 +72,27 @@ BigInt BigInt::operator+(const BigInt& bigNum) {
 // 	return *bigNum;
 // }
 BigInt BigInt::operator*(const BigInt& bigNum) {
-	static BigInt temp = bigNum;
-	return temp;
+	BigInt temp;
+	temp.value.assign(value.size()+bigNum.value.size(), 0);
+		for(int i = 0; i < value.size(); i++) {
+			int carry = 0;
+			for(int j = 0; j < bigNum.value.size() || carry > 0; j++) {
+				int res = temp.value[i+j] + carry + value[i]*(j < bigNum.value.size() ? bigNum.value[j] : 0);
+				temp.value[i+j] = res % base;
+				carry = res/base;
+			}
+		}
+	set(temp);
+ 	return temp;
 }
+
 
 /* Procedure */
 void BigInt::set(BigInt& B) {
 	while (B.value.size() > 1 && B.value.back() == 0)
 		B.value.pob();
 }
+
 
 /* IO */
 ostream& operator<<(ostream &out, const BigInt& val) {

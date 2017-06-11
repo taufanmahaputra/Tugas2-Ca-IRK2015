@@ -22,6 +22,14 @@ int main() {
 	BigInt op3("12312312312312312312"); BigInt op4("12312312312312312312");
 	cout << op3 << " + " << op4 << " = " << op3+op4 << endl;
 
+	/*Contoh operator* */
+	cout << endl << "operator*" << endl;
+	BigInt op5(5); BigInt op6(100); BigInt op7("900"); BigInt op8("1132"); 
+	BigInt op9("12312312312312312312"); BigInt op10("12312312312312312312");
+	cout << op5 << " * " << op6 << " = " << op5*op6 << endl;
+	cout << op7 << " * " << op8 << " = " << op7*op8 << endl;
+	cout << op9 << " * " << op10 << " = " << op9*op10 << endl;
+
 	
 	return 0;
 }
