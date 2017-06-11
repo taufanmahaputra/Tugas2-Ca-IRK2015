@@ -65,12 +65,37 @@ BigInt BigInt::operator+(const BigInt& bigNum) {
 	set(temp);
 	return temp;
 }
-// BigInt& BigInt::operator-(const BigInt& bigNum) {
-// 	return *bigNum;
-// }
+
+BigInt BigInt::operator-(const BigInt& bigNum) {
+	BigInt temp;
+	int len = (value.size() > bigNum.value.size()) ? value.size() : bigNum.value.size();
+	if(value.size() > bigNum.value.size()) {
+		temp = *this;
+		for(int i = 0; i < len; i++) {
+			temp.value[i] = value[i] - (i < bigNum.value.size() ? bigNum.value[i] : 0);
+		}
+	}
+	else {
+		temp = bigNum;
+		for(int i = 0; i < len; i++) {
+			temp.value[i] = (i < value.size() ? value[i] : 0) - bigNum.value[i];
+		}
+	}
+
+	for(int i = 0; i < len; i++) {
+		if(temp.value[i] < 0) {
+			temp.value[i] += base;
+			temp.value[i+1] -= 1;
+		}
+	}
+	set(temp);
+	return temp;
+}
+
 // BigInt& BigInt::operator/(const BigInt& bigNum) {
 // 	return *bigNum;
 // }
+
 BigInt BigInt::operator*(const BigInt& bigNum) {
 	BigInt temp;
 	temp.value.assign(value.size()+bigNum.value.size(), 0);

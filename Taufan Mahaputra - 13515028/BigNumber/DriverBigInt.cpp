@@ -30,6 +30,12 @@ int main() {
 	cout << op7 << " * " << op8 << " = " << op7*op8 << endl;
 	cout << op9 << " * " << op10 << " = " << op9*op10 << endl;
 
+	/*Contoh operator-*/
+	cout << endl << "operator-" << endl; 
+	cout << e << " - " << f << " = " << e-f << endl;
+	cout << op1 << " - " << op2 << " = " << op1-op2 << endl;
+	cout << op3 << " - " << op4 << " = " << op3-op4 << endl;
+
 	
 	return 0;
 }
