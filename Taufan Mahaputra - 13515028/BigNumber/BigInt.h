@@ -14,6 +14,7 @@ public:
 	/*Constructor*/
 	BigInt();
 	BigInt(long long lvalue);
+	BigInt(int lvalue);
 	BigInt(string svalue);
 	BigInt(const BigInt& bigNum);
 
@@ -24,6 +25,12 @@ public:
 	BigInt operator-(const BigInt& bigNum);
 	BigInt operator/(const BigInt& bigNum);
 	BigInt operator*(const BigInt& bigNum);
+	/* Comparison */
+	friend bool operator< (BigInt a, BigInt b);
+	friend bool operator> (BigInt a, BigInt b);
+	friend bool operator== (BigInt a, BigInt b);
+	friend bool operator<= (BigInt a, BigInt b);
+	friend bool operator>= (BigInt a, BigInt b);
 
 	/* Procedure */
 	void set(BigInt& B);

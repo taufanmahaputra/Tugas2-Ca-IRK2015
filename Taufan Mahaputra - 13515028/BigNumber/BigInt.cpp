@@ -21,6 +21,15 @@ BigInt::BigInt(long long lvalue) {
 	set(*this);
 }
 
+BigInt::BigInt(int lvalue) {
+	while(lvalue != 0) {
+		int num = lvalue % base;
+		value.phb(num);
+		lvalue = lvalue/base;
+	}
+	set(*this);	
+}
+
 BigInt::BigInt(string svalue) {
 	if(svalue.length() == 0) {
 		value.phb(0);
@@ -92,9 +101,17 @@ BigInt BigInt::operator-(const BigInt& bigNum) {
 	return temp;
 }
 
-// BigInt& BigInt::operator/(const BigInt& bigNum) {
-// 	return *bigNum;
-// }
+BigInt BigInt::operator/(const BigInt& bigNum) {
+	BigInt temp;
+	temp = *this;
+	int x = 0;
+	while(temp >= bigNum) {
+		temp = temp - bigNum;
+		x++;
+	}
+	BigInt res(x);
+	return res;
+}
 
 BigInt BigInt::operator*(const BigInt& bigNum) {
 	BigInt temp;
@@ -111,6 +128,32 @@ BigInt BigInt::operator*(const BigInt& bigNum) {
  	return temp;
 }
 
+/* Comparison */
+bool operator < (BigInt a, BigInt b) {
+	if(a.value.size() != b.value.size())
+		return a.value.size() < b.value.size();
+	for(int i = a.value.size()-1; i >= 0;i--) {
+		if(a.value[i] != b.value[i])
+			return a.value[i] < b.value[i];
+	}
+	return false;
+}
+
+bool operator> (BigInt a, BigInt b) {
+	return (b < a);
+}
+
+bool operator== (BigInt a, BigInt b) {
+	return (!(a < b) && !(b < a));
+}
+
+bool operator<= (BigInt a, BigInt b) {
+	return ((a < b) || (a == b));
+}
+
+bool operator>= (BigInt a, BigInt b) {
+	return ((b < a) || (a == b));
+}
 
 /* Procedure */
 void BigInt::set(BigInt& B) {

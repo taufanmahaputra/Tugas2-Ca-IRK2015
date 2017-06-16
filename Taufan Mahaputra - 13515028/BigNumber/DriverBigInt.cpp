@@ -36,6 +36,14 @@ int main() {
 	cout << op1 << " - " << op2 << " = " << op1-op2 << endl;
 	cout << op3 << " - " << op4 << " = " << op3-op4 << endl;
 
-	
+	/*Contoh operator-*/
+	cout << endl << "operator/" << endl; 
+	BigInt x1(25); BigInt x2(12505225); BigInt x3(824); 
+	BigInt y1(5); BigInt y2(5); BigInt y3(2);
+	cout << x1 << " / " << y1 << " = " << x1/y1 << endl;
+	cout << x2 << " / " << y2 << " = " << x2/y2 << endl;
+	cout << x3 << " / " << y3 << " = " << x3/y3 << endl;
+	cout << op9 << " * " << op10 << " = " << op9/op10 << endl;
+
 	return 0;
 }
